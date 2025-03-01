@@ -32,7 +32,6 @@
 	        pkgs.stow
 	        pkgs.terraform
 	        pkgs.vscodium
-          pkgs.zsh-autosuggestions
         ];
 
       # Necessary for using flakes on this system.
