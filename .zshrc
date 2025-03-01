@@ -3,8 +3,11 @@ HISTSIZE=1000
 SAVEHIST=1000
 setopt appendhistory
 
+export ANSIBLE_CONFIG=~/.config/ansible/ansible.cfg
+
 alias matrix='cmatrix -b'
 alias nix-flake-rebuild='darwin-rebuild switch --flake ~/dotfiles/.config/nix-darwin'
+alias rigel='ssh allan@192.168.86.104'
 alias sz='source ~/.zshrc'
 
 eval "$(starship init zsh)"

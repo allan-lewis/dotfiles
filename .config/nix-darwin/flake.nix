@@ -17,6 +17,7 @@
       # $ nix-env -qaP | grep wget
       environment.systemPackages =
         [
+                pkgs.ansible
 	        pkgs.cmatrix
 	        pkgs.doppler
           pkgs.dotnet-sdk
