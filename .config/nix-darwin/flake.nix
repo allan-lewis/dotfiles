@@ -17,21 +17,22 @@
       # $ nix-env -qaP | grep wget
       environment.systemPackages =
         [
-	  pkgs.cmatrix
-	  pkgs.doppler
+	        pkgs.cmatrix
+	        pkgs.doppler
           pkgs.dotnet-sdk
           pkgs.git-credential-manager
           pkgs.google-chrome
-	  pkgs.kubectl
-	  pkgs.kustomize
+	        pkgs.kubectl
+	        pkgs.kustomize
           pkgs.mkalias
           pkgs.neovim
           pkgs.neofetch
           pkgs.obsidian
           pkgs.starship
-	  pkgs.stow
-	  pkgs.terraform
-	  pkgs.vscodium
+	        pkgs.stow
+	        pkgs.terraform
+	        pkgs.vscodium
+          pkgs.zsh-autosuggestions
         ];
 
       # Necessary for using flakes on this system.
