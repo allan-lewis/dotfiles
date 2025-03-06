@@ -17,18 +17,20 @@
       # $ nix-env -qaP | grep wget
       environment.systemPackages =
         [
-                pkgs.ansible
+          pkgs.ansible
 	        pkgs.cmatrix
 	        pkgs.doppler
           pkgs.dotnet-sdk
           pkgs.git-credential-manager
           pkgs.google-chrome
+          pkgs.karabiner-elements
 	        pkgs.kubectl
 	        pkgs.kustomize
           pkgs.mkalias
           pkgs.neovim
           pkgs.neofetch
           pkgs.obsidian
+          pkgs.rectangle
           pkgs.starship
 	        pkgs.stow
 	        pkgs.terraform
