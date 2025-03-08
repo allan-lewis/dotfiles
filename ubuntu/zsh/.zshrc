@@ -6,6 +6,7 @@ setopt appendhistory
 export ANSIBLE_CONFIG=~/.config/ansible/ansible.cfg
 export TERM=xterm-256color
 
+eval "$(starship init zsh)"
 
 # git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
