@@ -1,7 +1,10 @@
 format = '$all$username[::](bold blue)$hostname$character'
 
 [kubernetes]
+format = '[$symbol$context|$namespace]($style) '
 disabled = false
+context_aliases = { "admin@staging" = "staging" }
+style = "blue bold"
 
 [username]
 disabled = false
