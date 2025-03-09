@@ -5,10 +5,10 @@ setopt appendhistory
 
 export ANSIBLE_CONFIG=~/.config/ansible/ansible.cfg
 
-alias castor='ssh ansible@192.168.86.125'
+alias castor='ssh lab@192.168.86.125'
 alias matrix='cmatrix -b'
 alias nix-flake-rebuild='darwin-rebuild switch --flake ~/Developer/dotfiles/macos/nix-darwin'
-alias pollux='ssh ansible@192.168.86.135'
+alias pollux='ssh lab@192.168.86.135'
 alias rigel='ssh allan@192.168.86.104'
 alias sz='source ~/.zshrc'
 
