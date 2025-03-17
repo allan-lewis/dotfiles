@@ -1,5 +1,5 @@
 # format = '$kubernetes$aws(bold blue)$all$username[::](bold blue)$hostname$character'
-format = '$terraform$kubernetes$directory$git_branch$git_status$time$line_break$username[::](bold blue)$hostname$character'
+format = '$terraform$kubernetes$git_branch$git_status$directory$time$line_break$username[::](bold blue)$hostname$character'
 
 [kubernetes]
 format = '[\[$context$symbol$namespace\] ]($style)'
