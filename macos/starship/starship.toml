@@ -1,10 +1,10 @@
 # format = '$kubernetes$aws(bold blue)$all$username[::](bold blue)$hostname$character'
-format = '$kubernetes$directory$time$line_break$username[::](bold blue)$hostname$character'
+format = '$terraform$kubernetes$directory$git_branch$git_status$time$line_break$username[::](bold blue)$hostname$character'
 
 [kubernetes]
 format = '[\[$context$symbol$namespace\] ]($style)'
 disabled = false
-context_aliases = { "admin@k8s-staging" = "k8s-staging" }
+context_aliases = { "admin@k8s-staging" = "staging" }
 style = "blue bold"
 symbol = '☸'
 
@@ -33,3 +33,14 @@ style = 'bold green'
 
 [directory]
 format = '[\[$path\]]($style)[$read_only]($read_only_style) '
+
+[terraform]
+format = '[\[$symbol$version\]]($style) '
+style = 'bold cyan'
+symbol = '💠'
+
+[git_branch]
+format = '[\[$symbol$branch(:$remote_branch)\]]($style) '
+
+[git_status]
+format = '([\[$all_status$ahead_behind\]]($style) )'
