@@ -18,11 +18,13 @@
       environment.systemPackages =
         [
           pkgs.ansible
+          pkgs.brave
 	        pkgs.cmatrix
 	        pkgs.doppler
           pkgs.dotnet-sdk
           pkgs.git-credential-manager
           pkgs.google-chrome
+          pkgs.k9s
           pkgs.karabiner-elements
 	        pkgs.kubectl
 	        pkgs.kustomize
