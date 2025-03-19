@@ -25,7 +25,7 @@
           pkgs.git-credential-manager
           pkgs.google-chrome
           pkgs.k9s
-          pkgs.karabiner-elements
+          #pkgs.karabiner-elements
 	        pkgs.kubectl
 	        pkgs.kustomize
           pkgs.mkalias
