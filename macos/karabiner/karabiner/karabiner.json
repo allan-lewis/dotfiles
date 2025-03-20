@@ -118,6 +118,72 @@
                                 }
                               ],
                               "type": "basic"
+                            },
+                            {
+                              "conditions": [
+                                {
+                                  "name": "hyper",
+                                  "type": "variable_if",
+                                  "value": 1
+                                }
+                              ],
+                              "description": "Window: right-half",
+                              "from": {
+                                "key_code": "right_arrow",
+                                "modifiers": {
+                                  "optional": ["any"]
+                                }
+                              },
+                              "to": [
+                                {
+                                  "shell_command": "open -g rectangle://execute-action?name=right-half"
+                                }
+                              ],
+                              "type": "basic"
+                            },
+                            {
+                              "conditions": [
+                                {
+                                  "name": "hyper",
+                                  "type": "variable_if",
+                                  "value": 1
+                                }
+                              ],
+                              "description": "Window: left-half",
+                              "from": {
+                                "key_code": "left_arrow",
+                                "modifiers": {
+                                  "optional": ["any"]
+                                }
+                              },
+                              "to": [
+                                {
+                                  "shell_command": "open -g rectangle://execute-action?name=left-half"
+                                }
+                              ],
+                              "type": "basic"
+                            },
+                            {
+                              "conditions": [
+                                {
+                                  "name": "hyper",
+                                  "type": "variable_if",
+                                  "value": 1
+                                }
+                              ],
+                              "description": "Window: maximize",
+                              "from": {
+                                "key_code": "up_arrow",
+                                "modifiers": {
+                                  "optional": ["any"]
+                                }
+                              },
+                              "to": [
+                                {
+                                  "shell_command": "open -g rectangle://execute-action?name=maximize"
+                                }
+                              ],
+                              "type": "basic"
                             }
                         ]
                     }

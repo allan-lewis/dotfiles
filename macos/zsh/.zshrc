@@ -1,7 +1,28 @@
-HISTFILE=~/.zsh_history
-HISTSIZE=1000
-SAVEHIST=1000
+# Append to history file immediately instead of overwriting it
 setopt appendhistory
+
+# Share command history across all active sessions in real-time
+setopt sharehistory
+
+# Ignore duplicate commands in the history
+setopt histignoredups
+
+# Ignore commands that start with a space (useful for sensitive commands)
+setopt histignorespace
+
+# Prevent adding empty lines to history
+setopt histignorealldups
+
+# Save multiple lines as a single command (useful for long, multiline commands)
+setopt incappendhistory
+
+# Allow the use of timestamps in history
+setopt extended_history
+
+# Set the size of the history file
+HISTSIZE=10000
+SAVEHIST=10000
+HISTFILE=~/.zsh_history
 
 export ANSIBLE_CONFIG=~/.config/ansible/ansible.cfg
 
