@@ -1,5 +1,5 @@
 # format = '$kubernetes$aws(bold blue)$all$username[::](bold blue)$hostname$character'
-format = '$terraform$kubernetes$git_branch$git_status$directory$time$line_break$username[::](bold blue)$hostname$character'
+format = '$aws$terraform$kubernetes$git_branch$git_status$directory$time$line_break$username[::](bold blue)$hostname$character'
 
 [kubernetes]
 format = '[\[$context$symbol$namespace\] ]($style)'
@@ -21,9 +21,10 @@ trim_at = '.local'
 disabled = false
 
 [aws]
-format = '[$symbol($profile )(\($region\) )]($style)'
+format = '[\[$symbol\]]($style) '
 disabled = false
-symbol = '🅰 '
+symbol = '☁️'
+#symbol = '\[🅰\]'
 
 [time]
 disabled=false
