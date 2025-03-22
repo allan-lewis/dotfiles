@@ -24,6 +24,8 @@ HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.zsh_history
 
+export PATH=$PATH:$(go env GOPATH)/bin
+
 export ANSIBLE_CONFIG=~/.config/ansible/ansible.cfg
 
 alias castor='ssh lab@192.168.86.125'
