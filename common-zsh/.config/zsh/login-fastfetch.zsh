@@ -1,6 +1,12 @@
 # ~/.config/zsh/login-fastfetch.zsh
 
-# Show fastfetch output if the command exists.
+# Run only if fastfetch exists
 if command -v fastfetch >/dev/null 2>&1; then
+  # Clear the screen, but ONLY for real terminals
+  # (avoids messing with cron, scp, etc.)
+  if [[ -t 1 ]]; then
+    clear
+  fi
+
   fastfetch
 fi
