@@ -1,19 +1,21 @@
-# Catppuccin Mocha starship theme
-# https://github.com/catppuccin/starship
+# ===========================================================
+#  Starship Prompt — Catppuccin Mocha Theme + Two-Line Layout
+# ===========================================================
 
 add_newline = true
 command_timeout = 1000
 
-# Two-line prompt:
+# ----------- Two-Line Prompt Format -----------
 format = """
 $directory
 $all$character
 """
 
-# -------- COLORS --------
-# (Catppuccin Mocha Palette)
+# ----------- Palette Selection -----------
+palette = "catppuccin_mocha"
 
-[palette]
+# ----------- Catppuccin Mocha Palette -----------
+[palettes.catppuccin_mocha]
 rosewater = "#f5e0dc"
 flamingo  = "#f2cdcd"
 pink      = "#f5c2e7"
@@ -41,47 +43,60 @@ base      = "#1e1e2e"
 mantle    = "#181825"
 crust     = "#11111b"
 
-# ---------- MODULES ----------
 
+# ===========================================================
+# MODULES
+# ===========================================================
+
+# ---------- Character (prompt symbol) ----------
 [character]
-success_symbol = "[➜](bold green)"
-error_symbol = "[➜](bold red)"
-vimcmd_symbol = "[](bold blue)"
+success_symbol = "[➜](bold fg:green)"
+error_symbol   = "[➜](bold fg:red)"
+vimcmd_symbol  = "[](bold fg:blue)"
 
+# ---------- Directory ----------
 [directory]
-style = "bold blue"
+style = "bold fg:blue"
 truncation_length = 3
 truncate_to_repo = true
 
+# ---------- Git: Branch ----------
 [git_branch]
 symbol = " "
-style = "bold lavender"
+style = "bold fg:lavender"
 format = "on [$symbol$branch]($style) "
 
+# ---------- Git: Status ----------
 [git_status]
-style = "yellow"
+style = "fg:yellow"
 format = '([\[$all_status$ahead_behind\]]($style) )'
 
+# ---------- Username ----------
 [username]
-style_user = "bold teal"
-format = "[$user]($style) "
+style_user = "bold fg:teal"
 show_always = false
+format = "[$user]($style) "
 
+# ---------- Hostname (SSH only) ----------
 [hostname]
 ssh_only = true
-style = "bold green"
+style = "bold fg:green"
 format = "on [$hostname]($style) "
 
+# ---------- Command Duration ----------
 [cmd_duration]
 min_time = 200
-style = "peach"
+style = "fg:peach"
 format = "took [$duration]($style) "
 
+# ---------- Time (disabled for now) ----------
 [time]
 disabled = true
 
+# ---------- AWS ----------
 [aws]
 disabled = true
 
+# ---------- Kubernetes ----------
 [kubernetes]
 disabled = true
