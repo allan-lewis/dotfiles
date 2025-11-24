@@ -3,7 +3,7 @@
 # Only run for interactive shells
 [[ $- != *i* ]] && return
 
-# Load common settings and helpers (kept minimal for now)
+# Load common settings and helpers
 if [[ -f "$ZDOTDIR/common.zsh" ]]; then
   source "$ZDOTDIR/common.zsh"
 fi
@@ -25,7 +25,14 @@ fi
 unset _os_file
 
 # Login-only hook: show fastfetch if installed
-# This runs only for login shells, not for every subshell.
 if [[ -o login ]] && [[ -f "$ZDOTDIR/login-fastfetch.zsh" ]]; then
   source "$ZDOTDIR/login-fastfetch.zsh"
+fi
+
+# Prompt: prefer Starship, fall back to a simple prompt if unavailable
+if command -v starship >/dev/null 2>&1; then
+  eval "$(starship init zsh)"
+else
+  # Simple fallback prompt if Starship isn't installed yet
+  PROMPT='%n@%m %1~ %# '
 fi
