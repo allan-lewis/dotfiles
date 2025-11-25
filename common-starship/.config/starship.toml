@@ -82,7 +82,7 @@ format = "[$user]($style) "
 
 # ---------- Hostname ----------
 [hostname]
-ssh_only = false
+ssh_only = true
 style = "bold fg:green"
 format = "on [$hostname]($style) "
 
