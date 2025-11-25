@@ -2,14 +2,19 @@
 #  Starship Prompt — Catppuccin Mocha Theme + Two-Line Layout
 # ===========================================================
 
-add_newline = true
+# Don't insert an extra blank line between prompts
+add_newline = false
+
 command_timeout = 1000
 
 # ----------- Two-Line Prompt Format -----------
-format = """
-$directory
-$all $character
-"""
+# 1st line: current directory
+# 2nd line: everything else + prompt symbol
+format = "$directory\n$all $character "
+
+# Disable the built-in line_break module so $all doesn't add a newline
+[line_break]
+disabled = true
 
 # ----------- Palette Selection -----------
 palette = "catppuccin_mocha"
