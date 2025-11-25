@@ -10,7 +10,7 @@ command_timeout = 1000
 # ----------- Two-Line Prompt Format -----------
 # 1st line: current directory
 # 2nd line: everything else + prompt symbol
-format = "$directory$git_branch$git_status$line_break$username$hostname$cmd_duration$time$character "
+format = "$directory$git_branch$git_status$line_break$username$hostname$cmd_duration$time$character"
 
 # ----------- Palette Selection -----------
 palette = "catppuccin_mocha"
