@@ -80,7 +80,7 @@ style_user = "bold fg:mauve"
 style_root = "bold fg:red"
 format = "[$user]($style) "
 
-# ---------- Hostname (SSH only) ----------
+# ---------- Hostname ----------
 [hostname]
 ssh_only = false
 style = "bold fg:green"
