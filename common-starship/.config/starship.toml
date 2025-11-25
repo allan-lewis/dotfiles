@@ -10,11 +10,7 @@ command_timeout = 1000
 # ----------- Two-Line Prompt Format -----------
 # 1st line: current directory
 # 2nd line: everything else + prompt symbol
-#format = "$directory\n$all $character "
-
-# Disable the built-in line_break module so $all doesn't add a newline
-#[line_break]
-#disabled = true
+format = "$directory$git_branch$git_status$line_break$username$hostname$cmd_duration$time$character "
 
 # ----------- Palette Selection -----------
 palette = "catppuccin_mocha"
@@ -67,7 +63,8 @@ truncate_to_repo = true
 
 # ---------- Git: Branch ----------
 [git_branch]
-symbol = " "
+#symbol = " "
+symbol = ""
 style = "bold fg:lavender"
 format = "on [$symbol$branch]($style) "
 
@@ -97,6 +94,7 @@ format = "took [$duration]($style) "
 
 # ---------- Time (disabled for now) ----------
 [time]
+time_format = "%H:%M"
 disabled = false
 
 # ---------- AWS ----------
