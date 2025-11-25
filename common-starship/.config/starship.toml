@@ -8,7 +8,7 @@ command_timeout = 1000
 # ----------- Two-Line Prompt Format -----------
 format = """
 $directory
-$all$character
+$all $character
 """
 
 # ----------- Palette Selection -----------

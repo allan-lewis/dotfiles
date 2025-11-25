@@ -1,15 +1,41 @@
 # ~/.config/zsh/common.zsh
-# Common interactive settings for all OSes.
+# Minimal, known-good base config while we debug
 
-# Work around hosts that don't know Ghostty's TERM
+print -u2 "[DEBUG] common.zsh loaded (user=$USER, ZDOTDIR=$ZDOTDIR, HISTFILE=$HISTFILE)"
+
+########## HISTORY ##########
+
+# Where to store history
+export HISTFILE="$HOME/.zsh_history"
+
+# How many lines to keep
+HISTSIZE=10000
+SAVEHIST=10000
+
+# Make sure history is written and shared across sessions
+setopt APPEND_HISTORY          # write history on exit
+setopt SHARE_HISTORY           # read from HISTFILE in new shells
+
+# Sensible filters
+setopt HIST_IGNORE_DUPS        # ignore immediate duplicates
+setopt HIST_IGNORE_SPACE       # ignore commands starting with a space
+setopt HIST_REDUCE_BLANKS      # trim extra spaces
+
+########## COMPLETION ##########
+
+autoload -Uz compinit
+compinit
+
+########## GHOSTTY / TERM FIX ##########
+
 if [[ "$TERM" = "xterm-ghostty" ]]; then
-  # If this TERM isn't known here, fall back to xterm-256color
   if ! infocmp >/dev/null 2>&1; then
     export TERM="xterm-256color"
   fi
 fi
 
-# Load terminfo and fix keybindings for backspace/delete, etc.
+########## KEYBINDINGS / BACKSPACE ##########
+
 if [[ -o interactive ]]; then
   zmodload zsh/terminfo 2>/dev/null || true
 
@@ -17,7 +43,6 @@ if [[ -o interactive ]]; then
   if [[ -n "${terminfo[kbs]}" ]]; then
     bindkey "${terminfo[kbs]}" backward-delete-char
   else
-    # Fallback: most terminals send ^?
     bindkey '^?' backward-delete-char
   fi
 
@@ -26,7 +51,7 @@ if [[ -o interactive ]]; then
     bindkey "${terminfo[kdch1]}" delete-char
   fi
 
-  # Home/End (nice to have)
+  # Home / End
   if [[ -n "${terminfo[khome]}" ]]; then
     bindkey "${terminfo[khome]}" beginning-of-line
   fi
@@ -34,25 +59,8 @@ if [[ -o interactive ]]; then
     bindkey "${terminfo[kend]}" end-of-line
   fi
 
-# Align the TTY erase character with what most modern terminals send (^?)
-if [[ -t 0 ]]; then
-  stty erase '^?' 2>/dev/null || true
+  # TTY erase char
+  if [[ -t 0 ]]; then
+    stty erase '^?' 2>/dev/null || true
+  fi
 fi
-
-# History settings
-HISTFILE="$HOME/.zsh_history"
-HISTSIZE=5000
-SAVEHIST=5000
-setopt INC_APPEND_HISTORY SHARE_HISTORY
-setopt HIST_IGNORE_DUPS HIST_IGNORE_SPACE
-
-# Completion
-autoload -Uz compinit
-compinit
-
-# Useful options
-setopt AUTO_CD
-setopt CORRECT              # mild command auto-correct
-setopt NO_CASE_GLOB
-
-# (Prompt handled in .zshrc via Starship or fallback)
