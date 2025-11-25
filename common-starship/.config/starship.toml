@@ -78,13 +78,13 @@ format = '([\[$all_status$ahead_behind\]]($style) )'
 
 # ---------- Username ----------
 [username]
-style_user = "bold fg:teal"
-show_always = false
+style_user = "bold fg:mauve"
+show_always = true
 format = "[$user]($style) "
 
 # ---------- Hostname (SSH only) ----------
 [hostname]
-ssh_only = true
+ssh_only = false
 style = "bold fg:green"
 format = "on [$hostname]($style) "
 
@@ -96,7 +96,7 @@ format = "took [$duration]($style) "
 
 # ---------- Time (disabled for now) ----------
 [time]
-disabled = true
+disabled = false
 
 # ---------- AWS ----------
 [aws]
