@@ -78,8 +78,9 @@ format = '([\[$all_status$ahead_behind\]]($style) )'
 
 # ---------- Username ----------
 [username]
-style_user = "bold fg:mauve"
 show_always = true
+style_user = "bold fg:mauve"
+style_root = "bold fg:red"
 format = "[$user]($style) "
 
 # ---------- Hostname (SSH only) ----------
