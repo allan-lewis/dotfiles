@@ -65,19 +65,13 @@ if [[ -o interactive ]]; then
   fi
 fi
 
-########## AUTOSUGGESTIONS ##########
-
-# zsh-autosuggestions plugin (fish-like history suggestions)
-if [[ -d "$ZDOTDIR/plugins/zsh-autosuggestions" ]]; then
+# AUTOSUGGESTIONS
+if [[ -f "$ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" ]]; then
   source "$ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
-
-  # Optional: tweak the suggestion style to fit Catppuccin vibe
-  # (default is a faint grey; this makes it a bit more visible)
-  ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#585b70'  # surface2-ish
+  ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#585b70'
 fi
 
-########## SYNTAX HIGHLIGHTING ##########
-
+# SYNTAX HIGHLIGHTING (must be last)
 if [[ -f "$ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]]; then
   source "$ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 fi

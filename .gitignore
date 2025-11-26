@@ -1,1 +1,24 @@
-macos/karabiner/karabiner/assets
+# =========================================
+# Dotfiles Repo Gitignore (stow + plugins)
+# =========================================
+
+# ---- Zsh history / local noise ----
+.zsh_history
+.zcompdump*
+.zsh_sessions/
+*.zwc
+*.tmp
+
+# ---- Editor + OS junk ----
+.DS_Store
+*.swp
+*.swo
+
+# ---- Runtime-only plugins (Ansible-installed) ----
+common-zsh/.config/zsh/plugins/
+*/.config/zsh/plugins/
+
+# ---- Logs / caches ----
+*.log
+.cache/
+starship_cache/
