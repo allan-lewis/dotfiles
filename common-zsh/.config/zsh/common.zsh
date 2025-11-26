@@ -1,7 +1,4 @@
 # ~/.config/zsh/common.zsh
-# Minimal, known-good base config while we debug
-
-print -u2 "[DEBUG] common.zsh loaded (user=$USER, ZDOTDIR=$ZDOTDIR, HISTFILE=$HISTFILE)"
 
 ########## HISTORY ##########
 
