@@ -5,6 +5,7 @@
 # ---- Zsh history / local noise ----
 .zsh_history
 .zcompdump*
+**/.zcompcache/*
 .zsh_sessions/
 *.zwc
 *.tmp
