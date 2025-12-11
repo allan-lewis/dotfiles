@@ -3,4 +3,4 @@
 # (Empty for now; add Arch-specific PATH tweaks, aliases, etc. later.)
 
 # Example placeholder:
-# export ARCH_EXAMPLE_VAR="arch"
+export DOTFILES_OS_VAR="arch"
