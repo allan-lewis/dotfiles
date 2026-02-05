@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Hardcode your desired wallpaper (stowed file in $HOME)
+WALLPAPER_PATH="${WALLPAPER_PATH:-$HOME/.local/share/wallpapers/wallpaper0.png}"
+
+# Only run in Plasma
+case "${XDG_CURRENT_DESKTOP:-}${DESKTOP_SESSION:-}" in
+  *KDE*|*Plasma*|*plasma*) ;;
+  *) exit 0 ;;
+esac
+
+# Need qdbus + plasmashell + session bus
+command -v qdbus >/dev/null 2>&1 || exit 0
+pgrep -x plasmashell >/dev/null 2>&1 || exit 0
+[[ -n "${DBUS_SESSION_BUS_ADDRESS:-}" ]] || exit 0
+
+# Wallpaper must exist
+[[ -f "${WALLPAPER_PATH}" ]] || exit 0
+
+# One-shot per wallpaper path (hash)
+stamp_dir="${XDG_CACHE_HOME:-$HOME/.cache}/plasma"
+mkdir -p "${stamp_dir}"
+stamp="$(printf '%s' "${WALLPAPER_PATH}" | sha256sum | awk '{print $1}')"
+stamp_file="${stamp_dir}/wallpaper-${stamp}.applied"
+
+[[ -f "${stamp_file}" ]] && exit 0
+
+# Apply
+qdbus org.kde.plasmashell /PlasmaShell org.kde.PlasmaShell.evaluateScript \
+"var allDesktops = desktops();
+for (var i=0; i<allDesktops.length; i++) {
+  var d = allDesktops[i];
+  d.wallpaperPlugin = 'org.kde.image';
+  d.currentConfigGroup = ['Wallpaper', 'org.kde.image', 'General'];
+  d.writeConfig('Image', 'file://${WALLPAPER_PATH}');
+}"
+
+touch "${stamp_file}"

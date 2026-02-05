@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Ensure Plasma Wallpaper
+Comment=Sets Plasma wallpaper once per session (idempotent)
+Exec=%h/.local/bin/plasma-wallpaper-ensure
+Terminal=false
+X-KDE-autostart-after=plasma-desktop
+X-KDE-StartupNotify=false
+X-KDE-RunOnDiscreteGpu=false
