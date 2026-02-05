@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+WP="${HOME}/.local/share/wallpapers/gruvbox_arch.png"
+
+if [[ ! -f "$WP" ]]; then
+  echo "Wallpaper not found: $WP" >&2
+  exit 1
+fi
+
+# Set wallpaper for every known backdrop property (handles multi-monitor + renames)
+while IFS= read -r prop; do
+  xfconf-query -c xfce4-desktop -p "$prop" -s "$WP"
+done < <(
+  xfconf-query -c xfce4-desktop -l \
+    | grep -E '/backdrop/.*(/image-path|/last-image)$' \
+    || true
+)
+
+# Optional: set a sane default style (5 is commonly "scaled"; harmless if unsupported)
+while IFS= read -r prop; do
+  xfconf-query -c xfce4-desktop -p "$prop" -s 5 >/dev/null 2>&1 || true
+done < <(
+  xfconf-query -c xfce4-desktop -l \
+    | grep -E '/backdrop/.*(/image-style)$' \
+    || true
+)
+
+echo "XFCE wallpaper set to: $WP"
