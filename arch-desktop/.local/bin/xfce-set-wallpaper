@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+sleep 5
+
 WP="${HOME}/.local/share/wallpapers/gruvbox_arch.png"
 
 if [[ ! -f "$WP" ]]; then

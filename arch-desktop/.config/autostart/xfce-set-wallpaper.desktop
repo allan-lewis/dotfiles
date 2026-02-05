@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Set XFCE Wallpaper
+Comment=Apply managed wallpaper on login
+Exec=%h/.local/bin/xfce-set-wallpaper
+OnlyShowIn=XFCE;
+X-GNOME-Autostart-enabled=true
+Terminal=false
+StartupNotify=false
