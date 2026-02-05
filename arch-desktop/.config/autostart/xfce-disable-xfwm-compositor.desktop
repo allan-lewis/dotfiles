@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Disable XFWM Compositor
+Exec=sh -lc "\$HOME/.local/bin/xfce-disable-xfwm-compositor"
+OnlyShowIn=XFCE;
+Terminal=false
+StartupNotify=false

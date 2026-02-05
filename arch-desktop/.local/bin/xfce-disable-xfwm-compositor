@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+deadline=$((SECONDS + 20))
+
+# Wait until xfconf is responsive and xfwm4 channel is reachable
+while (( SECONDS < deadline )); do
+  if xfconf-query -c xfwm4 -p /general/use_compositing >/dev/null 2>&1; then
+    break
+  fi
+  sleep 0.25
+done
+
+# Set it off (idempotent)
+xfconf-query -c xfwm4 -p /general/use_compositing -s false >/dev/null 2>&1 || true

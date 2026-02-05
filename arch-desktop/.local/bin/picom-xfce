@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+deadline=$((SECONDS + 25))
+
+# Wait for X11 session + xfwm4 process
+while (( SECONDS < deadline )); do
+  if [[ -n "${DISPLAY:-}" ]] && pgrep -x xfwm4 >/dev/null 2>&1; then
+    break
+  fi
+  sleep 0.25
+done
+
+# Ensure xfwm compositor stays off (harmless if already disabled)
+xfconf-query -c xfwm4 -p /general/use_compositing -s false >/dev/null 2>&1 || true
+
+# Kill any stray picom and start with known-good NVIDIA flags
+pkill picom >/dev/null 2>&1 || true
+
+exec picom \
+  --backend glx \
+  --vsync \
+  --xrender-sync-fence \
+  --no-use-damage

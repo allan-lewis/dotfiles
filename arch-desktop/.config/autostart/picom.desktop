@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Picom (XFCE)
+Exec=sh -lc "\$HOME/.local/bin/picom-xfce"
+OnlyShowIn=XFCE;
+Terminal=false
+StartupNotify=false
