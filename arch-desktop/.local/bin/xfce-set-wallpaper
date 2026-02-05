@@ -1,12 +1,20 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+LOG="${HOME}/.xfce-set-wallpaper.log"
+exec >>"$LOG" 2>&1
+
+echo "-----"
+date
+echo "cmd: $0 $*"
+echo "DISPLAY=${DISPLAY-}"
+echo "XDG_CURRENT_DESKTOP=${XDG_CURRENT_DESKTOP-}"
+echo "DBUS_SESSION_BUS_ADDRESS=${DBUS_SESSION_BUS_ADDRESS-}"
+
 WP="${HOME}/.local/share/wallpapers/gruvbox_arch.png"
-[[ -f "$WP" ]] || { echo "Wallpaper not found: $WP" >&2; exit 1; }
+[[ -f "$WP" ]] || { echo "Wallpaper not found: $WP"; exit 1; }
 
 deadline=$((SECONDS + 30))
-
-# Wait until xfdesktop backdrop properties exist
 while (( SECONDS < deadline )); do
   if xfconf-query -c xfce4-desktop -l 2>/dev/null | grep -qE '/backdrop/'; then
     break
@@ -14,21 +22,22 @@ while (( SECONDS < deadline )); do
   sleep 0.25
 done
 
-# Apply to every known image path property (multi-monitor safe)
 props="$(xfconf-query -c xfce4-desktop -l 2>/dev/null | grep -E '/backdrop/.*(/image-path|/last-image)$' || true)"
 if [[ -z "${props}" ]]; then
-  echo "No XFCE backdrop properties found (xfdesktop not ready?)." >&2
+  echo "No XFCE backdrop properties found (xfdesktop not ready?)."
   exit 0
 fi
 
 while IFS= read -r prop; do
-  xfconf-query -c xfce4-desktop -p "$prop" -s "$WP" >/dev/null 2>&1 || true
+  echo "set: $prop -> $WP"
+  xfconf-query -c xfce4-desktop -p "$prop" -s "$WP" || true
 done <<< "${props}"
 
-# Optional: set image style where supported (safe)
 styles="$(xfconf-query -c xfce4-desktop -l 2>/dev/null | grep -E '/backdrop/.*(/image-style)$' || true)"
 while IFS= read -r prop; do
+  [[ -n "$prop" ]] || continue
+  echo "style: $prop -> 5"
   xfconf-query -c xfce4-desktop -p "$prop" -s 5 >/dev/null 2>&1 || true
 done <<< "${styles}"
 
-echo "XFCE wallpaper set to: $WP"
+echo "OK"

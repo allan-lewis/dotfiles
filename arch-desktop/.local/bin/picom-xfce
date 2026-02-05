@@ -1,9 +1,17 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-deadline=$((SECONDS + 25))
+LOG="${HOME}/.picom-xfce.log"
+exec >>"$LOG" 2>&1
 
-# Wait for X11 session + xfwm4 process
+echo "-----"
+date
+echo "cmd: $0 $*"
+echo "DISPLAY=${DISPLAY-}"
+echo "XDG_CURRENT_DESKTOP=${XDG_CURRENT_DESKTOP-}"
+echo "DBUS_SESSION_BUS_ADDRESS=${DBUS_SESSION_BUS_ADDRESS-}"
+
+deadline=$((SECONDS + 25))
 while (( SECONDS < deadline )); do
   if [[ -n "${DISPLAY:-}" ]] && pgrep -x xfwm4 >/dev/null 2>&1; then
     break
@@ -11,14 +19,21 @@ while (( SECONDS < deadline )); do
   sleep 0.25
 done
 
-# Ensure xfwm compositor stays off (harmless if already disabled)
+echo "ensure xfwm4 compositing -> false"
 xfconf-query -c xfwm4 -p /general/use_compositing -s false >/dev/null 2>&1 || true
 
-# Kill any stray picom and start with known-good NVIDIA flags
+echo "kill existing picom (if any)"
 pkill picom >/dev/null 2>&1 || true
 
-exec picom \
-  --backend glx \
-  --vsync \
-  --xrender-sync-fence \
-  --no-use-damage
+echo "check composite owner before start:"
+xprop -root _NET_WM_CM_S0 2>/dev/null || true
+
+echo "starting picom..."
+picom --backend glx --vsync --xrender-sync-fence --no-use-damage
+rc=$?
+
+echo "picom exited rc=$rc"
+echo "check composite owner after:"
+xprop -root _NET_WM_CM_S0 2>/dev/null || true
+
+exit "$rc"
